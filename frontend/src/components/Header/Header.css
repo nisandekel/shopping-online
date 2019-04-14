@@ -1,0 +1,13 @@
+
+.title{
+    padding:3vh;
+    background-color: lemonchiffon;
+    text-align: center;
+    box-shadow: 0 7px 4px;
+}
+
+.cart-img{
+    margin-left:15px;
+    height: 45px;
+    width: 45px;
+}

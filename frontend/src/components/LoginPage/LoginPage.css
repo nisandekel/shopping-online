@@ -1,0 +1,15 @@
+
+.login-form{
+    margin-top: 6%; 
+    margin-left: 35%; 
+    width:25%;
+}
+
+.login-form input{
+    transition: 2s;
+    width:20vw;
+}
+
+.login-form input:hover{
+    width:30vw;
+}

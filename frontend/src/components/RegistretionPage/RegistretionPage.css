@@ -1,0 +1,15 @@
+
+.regitretion-form{
+    margin-left:15%;
+    margin-top:3%;
+    width: 25%;
+}
+
+.regitretion-form input{
+    transition: 2s;
+    width:20vw;
+}
+
+.regitretion-form input:hover{
+    width:30vw;
+}
