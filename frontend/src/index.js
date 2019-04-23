@@ -6,13 +6,29 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import App from './App';
+import {SIGNED_OUT} from './components/Header/Header.actions';
 import * as serviceWorker from './serviceWorker';
 
-const appTitle = "Shopping Cart";
 
-const initialState = { itemsList: [], isLoggedIn: false };
-const middlewares = applyMiddleware(thunk);
-const store = createStore(rootReducer, initialState, middlewares);
+const appTitle = "Shopping Online";
+//middle ware for saving state in local storage
+const storageSaver = store => next => action => {
+    next(action);
+    if(action.type===SIGNED_OUT){
+        localStorage.clear();
+    }else{
+        localStorage.setItem("app_data", JSON.stringify(store.getState()));
+    }
+    return;
+}
+
+function readLocalStorage() {
+    return JSON.parse(localStorage.getItem("app_data")) || { itemsList: [], displayImg: { showImg: false, src: "" }, myItemsList: [] };
+}
+
+// const initialState =  readLocalStorage();
+const middlewares = applyMiddleware(thunk, storageSaver);
+const store = createStore(rootReducer, readLocalStorage(), middlewares);
 ReactDOM.render(
     <Provider store={store}>
         <App title={appTitle} />

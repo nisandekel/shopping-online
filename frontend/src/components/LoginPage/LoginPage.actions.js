@@ -2,8 +2,8 @@ import { route } from './../../server/serverUrl';
 
 export const LOGGED_IN = "LOGGED_IN";
 
-export const loggedIn = ()=>{
-    return {type:LOGGED_IN};
+export const loggedIn = (userName)=>{
+    return {type:LOGGED_IN, userName};
 }
 
 export const checkAuthorization = (details) => {
@@ -21,7 +21,7 @@ export const checkAuthorization = (details) => {
             .then(res => res.json())
             .then(res => {
                 if (res.autorized === "autorized") {
-                    dispatch(loggedIn());
+                    dispatch(loggedIn(details.userName));
                 }
             })
             .catch(err => console.log(err))

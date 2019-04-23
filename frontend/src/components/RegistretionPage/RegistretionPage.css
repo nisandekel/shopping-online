@@ -13,3 +13,8 @@
 .regitretion-form input:hover{
     width:30vw;
 }
+
+.red{
+    color:red;
+    border-color: red;
+}

@@ -1,8 +1,9 @@
 
+
+
 .title{
-    padding:3vh;
-    background-color: lemonchiffon;
-    text-align: center;
+    padding:2.5vh;
+    background-color: rgba(46, 139, 86, 0.568);
     box-shadow: 0 7px 4px;
 }
 
@@ -10,4 +11,37 @@
     margin-left:15px;
     height: 45px;
     width: 45px;
+    position: relative;
+    animation-name: b;
+    animation-duration:10s;
+    animation-iteration-count: infinite;
+}
+
+.title span{
+    margin-right: 23vw;
+}
+
+.title button{
+    margin:1px;
+    width: 85.5px;
+}
+
+.invisible-take-up-space{
+    visibility: hidden;
+}
+
+#signout-button{
+    margin-left:24.2vw;
+}
+
+.selected{
+    background-color:slategrey;
+}
+
+ /* Standard syntax  */
+@keyframes b {
+    0%   {  left:0px; top:0px;}
+    25%  { left:23vw; top:0px;}
+     100% {  left:0px; top:0px;}
+    100% {  left:0px; top:0px;}
 }

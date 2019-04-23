@@ -1,0 +1,47 @@
+.search-item-form{
+    margin-top:10vh;
+}
+
+.search-item-label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
+    margin-left:15vw; 
+}
+
+.search-item{
+    width: 52vw;
+    margin-left:1vw;
+    display: inline;
+    border-radius:40px; 
+    transition:1.5s;
+}
+
+.search-item:focus{
+    box-shadow: 5px 10px 8px;
+}
+
+.img-frame{
+    z-index: 1;
+    position: fixed ;
+    left: 30vw;
+    top:15vh;
+    background-color: rgba(170, 168, 168, 0.445);
+    height: 500px;
+    width: 500px;
+    border-radius:7px; 
+}
+
+.item-display{
+    height: 90%;
+    width: 90%;
+    margin:2px 25px 25px 25px;
+    border-radius:7px; 
+}
+
+.x-button{
+    height: 15px;
+    width: 15px;
+    margin-left:95%;
+    cursor: pointer;
+}
+

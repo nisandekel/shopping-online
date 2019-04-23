@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import * as EmailValidator from 'email-validator';
 import './RegistretionPage.css';
 
 
@@ -11,21 +12,72 @@ const RegistretionPage = (props) => {
     const firstPassRef = React.createRef();
     const secondPassRef = React.createRef();
 
-    function handleRegister(){
-        const firstPass = firstPassRef.current.value;
-        const secondPass = firstPassRef.current.value;
-        if(firstPass!==secondPass){
-            alert("second password doesnt match to first password");
+    function handleRegister() {
+
+        const userName = userNameRef.current;
+        const email = emailRef.current;
+        const firstPass = firstPassRef.current;
+        const secondPass = secondPassRef.current;
+
+        if (userName.classList.contains("red") || userName.value==="") {
+            alert("user name has to be at least 5 characters long and need to contain at least 1 letter");
+            return;
         }
-        else{
-            const userName = userNameRef.current.value;
-            const email = emailRef.current.value;
-            const  details =  {userName, email, password: firstPass};
-            props.uploadRegistretionDetails(details); 
-            firstPassRef.current.value="";
-            secondPassRef.current.value="";
-            userNameRef.current.value="";
-            emailRef.current.value="";
+
+        if (email.classList.contains("red") || email.value==="") {
+            alert("invalid email");
+            return;
+        }
+
+        if (firstPass.classList.contains("red") || firstPass.value==="") {
+            alert("password has to be at least 8 characters long and need to contain at least 1 letter");
+            return;
+        }
+
+        if (firstPass.value !== secondPass.value) {
+            alert("second password doesnt match to first password");
+            return;
+        }
+
+        const details = { userName:userName.value , email:email.value, password: firstPass.value };
+        props.uploadRegistretionDetails(details);
+        firstPassRef.current.value = "";
+        secondPassRef.current.value = "";
+        userNameRef.current.value = "";
+        emailRef.current.value = "";
+    }
+
+    function userNameValidator() {
+        const userName = userNameRef.current;
+        if ((!isStringLongerThanLength(userName.value, 5) || !isStirngIncludeLetters(userName.value)) && userName.value !== "") {
+            userName.classList.add("red");
+            userName.title="user name has to be at least 5 characters long and need to contain at least 1 letter";
+        }
+        else {
+            userName.classList.remove("red");
+            userName.title="";
+        }
+    }
+
+    function emailValidator() {
+        const email = emailRef.current;
+        if (!EmailValidator.validate(email.value) && email.value !== "") {
+            email.classList.add("red");
+        }
+        else {
+            email.classList.remove("red");
+        }
+    }
+
+    function passWordValidator(currentPass) {
+        const password = currentPass;
+        if ((!isStringLongerThanLength(password.value, 8) || !isStirngIncludeLetters(password.value)) && password.value !== "") {
+            password.classList.add("red");
+            password.title="password has to be at least 8 characters long and need to contain at least 1 letter";
+        }
+        else {
+            password.classList.remove("red");
+            password.title="";
         }
     }
 
@@ -34,25 +86,50 @@ const RegistretionPage = (props) => {
             <Form>
                 <Form.Group>
                     <Form.Label>User name</Form.Label>
-                    <Form.Control ref={userNameRef} type="text" placeholder="Enter user name" />
+                    <Form.Control ref={userNameRef} type="text" onKeyUp={userNameValidator} placeholder="Enter user name" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" />
+                    <Form.Control ref={emailRef} type="email" onKeyUp={emailValidator} placeholder="Enter email" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref={firstPassRef} type="password" placeholder="Password" />
+                    <Form.Control ref={firstPassRef} type="password" onKeyUp={() => passWordValidator(firstPassRef.current)} placeholder="Password" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Repeat password</Form.Label>
-                    <Form.Control ref={secondPassRef} type="password" placeholder="Password" />
+                    <Form.Control ref={secondPassRef} type="password" onKeyUp={() => passWordValidator(secondPassRef.current)} placeholder="Password" />
                 </Form.Group>
                 <Button variant="primary" onClick={handleRegister}>Submit</Button>
             </Form>
             <Link to="/login">Login</Link>
         </div>
     )
+}
+
+const isStringLongerThanLength = (string, length) => {
+    if (string.length < length) {
+        return false
+    }
+    return true;
+}
+
+const isStirngIncludeLetters = (string) => {
+
+    for (let char of string) {
+        for (let i = 65; i <= 90; i++) {
+            if (char.charCodeAt() === i) {
+                return true;
+            }
+        }
+
+        for (let i = 97; i <= 122; i++) {
+            if (char.charCodeAt() === i) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export default RegistretionPage;
