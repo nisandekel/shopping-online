@@ -10,7 +10,7 @@ import { uploadRegistretionDetails } from './components/RegistretionPage/Regisre
 import { checkAuthorization } from './components/LoginPage/LoginPage.actions';
 import { signedOut, shopButtonClicked } from './components/Header/Header.actions';
 import { xButtonClicked } from './components/ShoppingPage/ShoppingPage.actions';
-import {filterList} from './components/ItemsList/ItemsList.actions';
+import { filterList, sortList } from './components/ItemsList/ItemsList.actions';
 import { connect } from 'react-redux'
 import './App.css';
 
@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     const { uploadRegistretionDetails, checkAuthorization, currentUser,
-      displayImg, unShowImg, signOut, resetImgDisplayerOnShoppingPage,filterList } = this.props;
+      displayImg, unShowImg, signOut, resetImgDisplayerOnShoppingPage, filterList, sortList } = this.props;
 
     return (
       <div className="App">
@@ -31,7 +31,7 @@ class App extends Component {
               {...props} uploadRegistretionDetails={uploadRegistretionDetails} />}
             />
             <Route path="/shopping/" render={(props) => <ShoppingPage {...props} displayImg={displayImg}
-              unShowImg={unShowImg} filterList={filterList}/>}
+              unShowImg={unShowImg} filterList={filterList} sortList={sortList} />}
             />
             <Route path="/my-cart/" render={(props) => <MyCartPage {...props}
               userName={currentUser.userName} />}
@@ -64,7 +64,8 @@ const mapDispatchToProps = dispatch => {
     unShowImg: () => dispatch(xButtonClicked()),
     signOut: () => dispatch(signedOut()),
     resetImgDisplayerOnShoppingPage: () => dispatch(shopButtonClicked()),
-    filterList:(searchValue)=> dispatch(filterList(searchValue))
+    filterList: (searchValue) => dispatch(filterList(searchValue)),
+    sortList: (sortBy) => dispatch(sortList(sortBy))
   }
 }
 

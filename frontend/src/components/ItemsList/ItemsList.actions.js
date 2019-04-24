@@ -2,6 +2,11 @@ import { route } from './../../server/serverUrl';
 
 export const ITEMS_FETCHED = "ITEMS_FETCHED";
 export const FILTER_LIST = "FILTER_LIST";
+export const SORT_LIST = "SORT_LIST";
+
+export const sortList = (sortBy) => {
+    return { type: SORT_LIST, sortBy };
+}
 
 export const itemsFetched = (items) => {
     return { type: ITEMS_FETCHED, items }
