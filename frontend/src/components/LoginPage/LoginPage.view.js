@@ -1,13 +1,13 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import Banner from './../Banner/Banner.view';
 import './LoginPage.css';
 
 const LoginPage = (props) => {
 
     const usernameRef = React.createRef();
     const passRef = React.createRef();
-
 
     function handleLogin(){
         const userName = usernameRef.current.value;
@@ -19,6 +19,10 @@ const LoginPage = (props) => {
     }
 
     return (
+        <div>
+            <div className="login-page-banner">
+                <Banner msg={props.banner.msg} show={props.banner.show} color={props.banner.color}/>
+             </div>   
         <div className="login-form">
             <Form>
                 <Form.Group>
@@ -31,10 +35,9 @@ const LoginPage = (props) => {
                 </Form.Group>
                 <Button variant="primary" onClick={handleLogin}>Submit</Button>
             </Form>
-            <Link to="/registretion/">Register</Link>
+            <Link to="/registretion/" onClick={()=>props.unshowBanner()}>Register</Link>
         </div>
-
-
+        </div>
     );
 }
 

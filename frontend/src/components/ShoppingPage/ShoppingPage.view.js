@@ -1,6 +1,7 @@
 import React from 'react';
 import VisiableItemsList from './../../containers/VisiableItemsList';
 import { Form, NavDropdown } from 'react-bootstrap';
+import Banner from './../Banner/Banner.view';
 import './ShoppingPage.css';
 
 const ShoppingPage = (props) => {
@@ -14,10 +15,13 @@ const ShoppingPage = (props) => {
 
     return (
         <div>
+            <div className="shopping-page-banner">
+                <Banner msg={props.banner.msg} show={props.banner.show} color={props.banner.color} />
+            </div>
             <div className="sort-search-container">
                 <NavDropdown title="Sort items" id="nav-dropdown">
-                    <NavDropdown.Item onClick={()=>props.sortList("price")} eventKey="4.1">by price</NavDropdown.Item>
-                    <NavDropdown.Item onClick={()=>props.sortList("name")} eventKey="4.2">by name</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => props.sortList("price")} eventKey="4.1">by price</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => props.sortList("name")} eventKey="4.2">by name</NavDropdown.Item>
                 </NavDropdown>
                 <Form.Group className="search-item-form">
                     <Form.Label className="search-item-label">Search item:</Form.Label>

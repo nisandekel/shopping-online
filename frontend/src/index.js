@@ -17,7 +17,9 @@ const storageSaver = store => next => action => {
     if(action.type===SIGNED_OUT){
         localStorage.clear();
     }else{
-        localStorage.setItem("app_data", JSON.stringify(store.getState()));
+        const state = {...store.getState()};
+        state["banner"] = { msg: "", show: false };
+        localStorage.setItem("app_data", JSON.stringify(state));
     }
     return;
 }

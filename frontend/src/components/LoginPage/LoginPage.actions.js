@@ -1,4 +1,5 @@
 import { route } from './../../server/serverUrl';
+import {showBanner, unshowBanner} from './../Banner/Banner.actions';
 
 export const LOGGED_IN = "LOGGED_IN";
 
@@ -24,6 +25,9 @@ export const checkAuthorization = (details) => {
                     dispatch(loggedIn(details.userName));
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                dispatch(showBanner("one or more fields is incorrect", "warning"));
+                setTimeout(()=>dispatch(unshowBanner()),3000);
+            })
     }
 }

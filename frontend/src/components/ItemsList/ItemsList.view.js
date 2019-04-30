@@ -20,8 +20,9 @@ class ItemsList extends React.Component {
         this.items = itemsArr.map(item =>
             (<li key={item._id}>
                 <Item id={item._id} name={item.name} img={item.img} price={item.price}
-                    displayImg={this.props.displayImg} addItem={this.props.addItem} deleteItem={this.props.deleteItem} 
-                    allItems={this.props.allItems}
+                    displayImg={this.props.displayImg} addItem={this.props.addItem}
+                    deleteItem={this.props.deleteItem} allItems={this.props.allItems}
+                    showBanner={this.props.showBanner} unshowBanner={this.props.unshowBanner}
                 />
             </li>)
         );

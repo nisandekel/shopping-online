@@ -12,8 +12,6 @@
  border-radius: 7px;
 }
 
-
-
 .search-item-label{
     margin-left: 20px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -33,7 +31,7 @@
 }
 
 .img-frame{
-    z-index: 1;
+    z-index: 2;
     position: fixed ;
     left: 30vw;
     top:15vh;
@@ -55,5 +53,12 @@
     width: 15px;
     margin-left:95%;
     cursor: pointer;
+}
+
+.shopping-page-banner{
+    position: fixed ;
+    z-index: 1;
+    margin-top:10vh;
+    margin-left:35.5vw;
 }
 

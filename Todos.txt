@@ -1,3 +1,0 @@
-thing todo:
-3.responsive
-4.banner

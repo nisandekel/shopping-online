@@ -4,12 +4,14 @@ import './Item.css';
 
 const Item = (props) => {
 
-    function addItem(){
-        const item = {_id:props.id, name:props.name, price:props.price, img:props.img};
+    function addItem() {
+        const item = { _id: props.id, name: props.name, price: props.price, img: props.img };
         props.addItem(item);
+        props.showBanner(item.name + " has been added to your cart")
+        setTimeout(props.unshowBanner, 3000);
     }
 
-    function deleteItem(){
+    function deleteItem() {
         props.deleteItem(props.id);
     }
 
@@ -19,7 +21,7 @@ const Item = (props) => {
 
     return (
         <Card className="item-card" id={props.id}>
-            <Card.Img className="item-img" variant="top" src={props.img} onClick={()=> props.displayImg(props.img)}/>
+            <Card.Img className="item-img" variant="top" src={props.img} onClick={() => props.displayImg(props.img)} />
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Text>price: {props.price}</Card.Text>
